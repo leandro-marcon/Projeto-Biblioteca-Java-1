@@ -5,13 +5,13 @@ import java.util.Date;
 public class Usuario {
 	private int codigoUser;
 	private String nome;
-	private Date dtNascimento;
+	//private Date dtNascimento;
 	
-	public Usuario(int codigoUser, String nome, Date dtNascimento) {
-		this.codigoUser = codigoUser;
-		this.nome = nome;
-		this.dtNascimento = dtNascimento;
-	}
+//	public Usuario(int codigoUser, String nome, Date dtNascimento) {
+//		this.codigoUser = codigoUser;
+//		this.nome = nome;
+//		//this.dtNascimento = dtNascimento;
+//	}
 
 	public int getCodigoUser() {
 		return codigoUser;
@@ -29,13 +29,13 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public Date getDtNascimento() {
-		return dtNascimento;
-	}
-
-	public void setDtNascimento(Date dtNascimento) {
-		this.dtNascimento = dtNascimento;
-	}
+//	public Date getDtNascimento() {
+//		return dtNascimento;
+//	}
+//
+//	public void setDtNascimento(Date dtNascimento) {
+//		this.dtNascimento = dtNascimento;
+//	}
 	
 	
 

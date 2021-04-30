@@ -40,36 +40,36 @@
 		style="position: relative; display: inline-block; width: 50%; margin-bottom: 40px; margin-left: 15%; border-collapse: collapse;">
 		 Percebam que aqui no action eu to passando qual a página que elevai mandar os dados depois que eu clicar no botao
 				<form action="/Biblioteca/usuarioSave" method="POST" modelAttribute="usuario">
-					<form:hidden path="usuario.id" />
-					
-					<p>
-						Código:
-						<form:input path="usuario.codigo" />
+					<form:hidden path="usuario.codigoUser" />
 
-					</p>
-					
-					<p>
+<!-- 			<p> -->
+<!-- 				Código: -->
+<%-- 				<form:input path="usuario.codigoUser" /> --%>
+
+<!-- 			</p> -->
+
+			<p>
 						Nome:
 						<form:input path="usuario.nome" />
 
 					</p>
 
-					<p>
-						Sobrenome:
-						<form:input path="usuario.dtNascimento" />
+<!-- 					<p> -->
+<!-- 						Sobrenome: -->
 
-					</p>
+
+<!-- 					</p> -->
 					
 					<p>
 					 
-<%-- 						<form:input type="date" path="cliente.dataNasc" /> --%>
+
 
 					</p>
 
 					<input type="submit" value="Salvar" />
 
 				</form>
-			</div>
+		</div> 
 
 
 		<a href="/Biblioteca"> voltar</a>
