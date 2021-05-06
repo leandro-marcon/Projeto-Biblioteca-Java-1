@@ -2,8 +2,25 @@ package unoesc.edu.Biblioteca.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name = "Usuarios")
+
 public class Usuario {
+	
+	@Id
+	@GeneratedValue(generator = "seq_pk_usuarios", strategy = GenerationType.AUTO)
 	private int codigoUser;
+	
+	@Column
 	private String nome;
 	//private Date dtNascimento;
 	

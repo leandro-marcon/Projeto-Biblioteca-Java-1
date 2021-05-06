@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,22 +26,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sun.jdi.Method;
 
+import unoesc.edu.Biblioteca.DAO.UsuarioDAO;
 import unoesc.edu.Biblioteca.model.Usuario;
+
 
 @Controller
 public class ControllerUsuario {
+
+	@Autowired
+	private UsuarioDAO usuarioDao;
 
 	@RequestMapping(path = "/usuario", method = RequestMethod.GET)
 	public String acessoUsuario(Model model, HttpSession session) {
 		System.out.println("Chamou usuário");
 
-		List<Usuario> listaUsuarios;
-
-		if (session.getAttribute("listaUsuarios") == null) {
-			listaUsuarios = new LinkedList<Usuario>();
-			session.setAttribute("listaUsuarios", listaUsuarios);
-		} else
-			listaUsuarios = (LinkedList) session.getAttribute("listaUsuarios");
+		List<Usuario> listaUsuarios = this.usuarioDao.getallUsuarios();
 
 		model.addAttribute("listaUsuarios", listaUsuarios);
 		model.addAttribute("usuario", new Usuario());
@@ -52,20 +52,43 @@ public class ControllerUsuario {
 	public String usuarioSave(@ModelAttribute("usuario") Usuario user, HttpSession session, Model model) {
 		List listaUsuario = (LinkedList<Usuario>) session.getAttribute("listaUsuario");
 
-//		if (user.getCodigoUser() == 0) {
-	
-			listaUsuario.add(user);
-			user.setCodigoUser(listaUsuario.size());
-			System.out.println("Salvou Usuário");
-//		} else {
-//			Usuario c = (Usuario) listaUsuario.get(user.getCodigoUser() - 1);
-//			c.setCodigoUser(user.getCodigoUser());
-//			c.setNome(user.getNome());
-//			System.out.println("pegou o usuario");
-//		}
+		if (user.getCodigoUser() == 0) {
+			this.usuarioDao.insertUsuario(user);
+			System.out.println("Salvou Cliente");
+		} else {
+			Usuario c = this.usuarioDao.getUsuarioById(user.getCodigoUser());
+			c.setNome(user.getNome());
+			this.usuarioDao.updateUsuario(user);
+
+		}
 		
 		return "redirect:/usuario";
 
+	}
+	
+	@RequestMapping(path = "usuarioEdit/{id}", method = RequestMethod.GET)
+	public String edit(@PathVariable int id, Model model, HttpSession session) {
+		List listaUsuario = (LinkedList<Usuario>) session.getAttribute("listaUsuario");
+	
+		Usuario c = this.usuarioDao.getUsuarioById(id); //Buscar o cara a ser editado
+		model.addAttribute("listaUsuario", listaUsuario);
+		model.addAttribute("usuario", c);
+		
+		
+		return "usuarioCrud";
+		
+	}
+	
+	
+	@RequestMapping(path = "usuarioDelete/{id}", method = RequestMethod.GET)
+	public String delete( @PathVariable int id, Model model, HttpSession session) {
+		
+		this.usuarioDao.deleteUsuario(id);
+	
+		System.out.println("Removeu");
+		
+		return "redirect:/usuario";
+		
 	}
 
 }
