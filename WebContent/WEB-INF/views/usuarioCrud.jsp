@@ -19,17 +19,16 @@
 				<tr>
 					<th>Código</th>
 					<th>Nome</th>
-					<th>Data de Nascimento</th>
 					<th>Editar</th>
 					<th>Deletar</th>
 				</tr>
 				<c:forEach var="c" items="${listaUsuarios}">
 					<tr>
-						<td>${c.codigo}</td>
+						<td>${c.codigoUser}</td>
 						<td>${c.nome}</td>
 <%-- 						<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dataNasc}"/></td> --%>
-						<td><a href="usuarioEdit/${c.id}">Edit</a></td>
-						<td><a href="usuarioDelete/${c.id}">Delete</a></td>
+						<td><a href="usuarioEdit/${c.codigoUser}">Edit</a></td>
+						<td><a href="usuarioDelete/${c.codigoUser}">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>
