@@ -9,6 +9,7 @@
 <body>
 	
 	<h2><a href="usuario">Cadastro De Usuário</a></h2>
-	<h2><a href="https://www.w3schools.com">Cadastro de Livros</a></h2> teste w
+	<h2><a href="livro">Cadastro de Livros</a></h2>
+	<h2><a href="reserva">Reserva de Livros</a></h2> 
 </body>
 </html>

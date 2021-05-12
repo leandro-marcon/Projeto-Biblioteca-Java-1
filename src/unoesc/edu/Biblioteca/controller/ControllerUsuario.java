@@ -56,8 +56,6 @@ public class ControllerUsuario {
 			this.usuarioDao.insertUsuario(user);
 			System.out.println("Salvou Cliente");
 		} else {
-			Usuario c = this.usuarioDao.getUsuarioById(user.getCodigoUser());
-			c.setNome(user.getNome());
 			this.usuarioDao.updateUsuario(user);
 
 		}

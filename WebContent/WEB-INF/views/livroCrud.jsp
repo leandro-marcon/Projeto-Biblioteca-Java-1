@@ -8,31 +8,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Usuario</title>
+<title>Livro</title>
 </head>
 <body>
 
 	<div
 		style="position: relative; display: inline-block; width: 50%; margin-bottom: 40px; margin-left: 15%; border-collapse: collapse;">
-		<c:if test="${listaUsuarios.size() > 0}">
+		<c:if test="${listaLivros.size() > 0}">
 			<table border="2" width="70%" cellpadding="2">
 				<tr>
 					<th>Código</th>
-					<th>Nome</th>
-					<th>E-mail</th>
-					<th>Data Nascimento</th>
+					<th>Titulo</th>
+					<th>Autor</th>
+					<th>Ano Publicação</th>
 					<th>Editar</th>
 					<th>Deletar</th>
 				</tr>
-				<c:forEach var="c" items="${listaUsuarios}">
+				<c:forEach var="c" items="${listaLivros}">
 					<tr>
-						<td>${c.codigoUser}</td>
-						<td>${c.nome}</td>
-						<td>${c.email}</td>
-						<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dtNascimento}"/></td>
+						<td>${c.codigoLivro}</td>
+						<td>${c.titulo}</td>
+						<td>${c.autor}</td>
+						<td>${c.anoPublic}</td>
+						
 
-						<td><a href="usuarioEdit/${c.codigoUser}">Edit</a></td>
-						<td><a href="usuarioDelete/${c.codigoUser}">Delete</a></td>
+						<td><a href="livroEdit/${c.codigoLivro}">Edit</a></td>
+						<td><a href="livroDelete/${c.codigoLivro}">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -41,32 +42,32 @@
 
 	<div
 		style="position: relative; display: inline-block; width: 50%; margin-bottom: 40px; margin-left: 15%; border-collapse: collapse;">
-		  <h3>CADASTRAR USUARIO</h3>
-				<form action="/Biblioteca/usuarioSave" method="POST" modelAttribute="usuario">
-					<form:hidden path="usuario.codigoUser" />
+		 <h3>CADASTRAR LIVRO</h3>
+				<form action="/Biblioteca/livroSave" method="POST" modelAttribute="livro">
+					<form:hidden path="livro.codigoLivro" />
 
 <!-- 			<p> -->
 <!-- 				Código: -->
-<%-- 				<form:input path="usuario.codigoUser" /> --%>
+<%-- 				<form:input path="livro.codigoUser" /> --%>
 
 <!-- 			</p> -->
 
 			<p>
-						Nome:
-						<form:input path="usuario.nome" />
+						Titulo:
+						<form:input path="livro.titulo" />
 
 					</p>
 
 					<p>
-						E-mail:
-						<form:input path="usuario.email" />
+						Autor:
+						<form:input path="livro.autor" />
 
 
 					</p>
 					
 					<p>
-					 	Data de Nascimento:
-					 	<form:input type="date" path="usuario.dtNascimento"/>
+					 	Ano Publicação:
+					 	<form:input path="livro.anoPublic" />
 
 
 					</p>

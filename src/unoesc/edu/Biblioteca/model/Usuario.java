@@ -1,6 +1,8 @@
 package unoesc.edu.Biblioteca.model;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +24,12 @@ public class Usuario {
 	
 	@Column
 	private String nome;
-	//private Date dtNascimento;
+	
+	@Column
+	private String email;
+	
+	@Column
+	private Date dtNascimento;
 	
 //	public Usuario(int codigoUser, String nome, Date dtNascimento) {
 //		this.codigoUser = codigoUser;
@@ -46,13 +53,23 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-//	public Date getDtNascimento() {
-//		return dtNascimento;
-//	}
-//
-//	public void setDtNascimento(Date dtNascimento) {
-//		this.dtNascimento = dtNascimento;
-//	}
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+
+	public Date getDtNascimento() {
+		return dtNascimento;
+	}
+
+	public void setDtNascimento(Date dtNascimento) {
+		this.dtNascimento = dtNascimento;
+	}
 	
 	
 
