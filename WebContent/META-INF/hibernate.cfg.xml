@@ -7,5 +7,6 @@
     <session-factory>
         <mapping class="unoesc.edu.Biblioteca.model.Usuario"></mapping>
         <mapping class="unoesc.edu.Biblioteca.model.Livro"></mapping>
+        <mapping class="unoesc.edu.Biblioteca.model.Reserva"></mapping>
     </session-factory>
 </hibernate-configuration>

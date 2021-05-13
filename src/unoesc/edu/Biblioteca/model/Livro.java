@@ -1,11 +1,20 @@
 package unoesc.edu.Biblioteca.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
 
 @SuppressWarnings("serial")
 @Entity
@@ -24,7 +33,14 @@ public class Livro {
 	
 	@Column
 	private int anoPublic;
-
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "Reserva", 
+    joinColumns = { @JoinColumn(name = "codigoReserva") }, 
+    inverseJoinColumns = { @JoinColumn(name = "codigoReserva") })
+ 	private Set<Reserva> reserva = new HashSet<Reserva>();
+	
+	
 	public int getCodigoLivro() {
 		return codigoLivro;
 	}

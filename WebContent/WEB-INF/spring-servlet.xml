@@ -58,6 +58,7 @@
  
  	<bean id="UsuarioDAO" class="unoesc.edu.Biblioteca.DAO.UsuarioDAOImpl"></bean>
  	<bean id="LivroDAO" class="unoesc.edu.Biblioteca.DAO.LivroDAOImpl"></bean>
+ 	<bean id="ReservaDAO" class="unoesc.edu.Biblioteca.DAO.ReservaDAOImpl"></bean>
     
     <tx:annotation-driven />
     <bean id="transactionManager"  class="org.springframework.orm.hibernate5.HibernateTransactionManager">
