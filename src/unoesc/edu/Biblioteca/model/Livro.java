@@ -34,11 +34,12 @@ public class Livro {
 	@Column
 	private int anoPublic;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "Reserva", 
-    joinColumns = { @JoinColumn(name = "codigoReserva") }, 
-    inverseJoinColumns = { @JoinColumn(name = "codigoReserva") })
- 	private Set<Reserva> reserva = new HashSet<Reserva>();
+	//@ManyToMany(fetch = FetchType.EAGER)
+	//@JoinTable(name = "Reservas_Livros", 
+    //joinColumns = { @JoinColumn(name = "codigoReserva") }, 
+    //inverseJoinColumns = { @JoinColumn(name = "codigoReserva") })
+ 	//private Set<Reserva> reserva = new HashSet<Reserva>();
+	
 	
 	
 	public int getCodigoLivro() {

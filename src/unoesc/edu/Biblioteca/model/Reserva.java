@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Reservas")
@@ -28,15 +29,51 @@ public class Reserva {
 	
 	@Column
 	private Date dtFinal;
-	
-	@ManyToMany(mappedBy = "Livros")
-	
-	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
+//	
+//	//@ManyToMany(mappedBy = "Livros")
+//	
+
+	@ManyToOne
 	@JoinColumn(name = "codigoUser")// integer,
-	Usuario usuario;
+	private Usuario usuario;
 	
 	
+//	
+//	
+//	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
+	public int getCodigoReserva() {
+		return codigoReserva;
+	}
 	
+	public void setCodigoReserva(int codigoReserva) {
+		this.codigoReserva = codigoReserva;
+	}
+
+	public Date getDtInicio() {
+		return dtInicio;
+	}
+
+	public void setDtInicio(Date dtInicio) {
+		this.dtInicio = dtInicio;
+	}
+
+	public Date getDtFinal() {
+		return dtFinal;
+	}
+
+	public void setDtFinal(Date dtFinal) {
+		this.dtFinal = dtFinal;
+	}
 	
+
 }

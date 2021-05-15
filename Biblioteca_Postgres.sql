@@ -7,8 +7,6 @@ CREATE TABLE Usuarios (
 	dtNascimento date
 );
 
-drop table Usuarios
-
 
 CREATE SEQUENCE seq_pk_livros START 1;
 
@@ -25,8 +23,15 @@ create table Reservas (
 	codigoReserva int PRIMARY KEY DEFAULT nextval('seq_pk_reservas'),
 	dtInicio date,
 	dtFinal date,
-	codigoLivro int,
 	codigoUser int,
-	FOREIGN KEY (codigoLivro) REFERENCES Livros (codigoLivro),
 	FOREIGN KEY (codigoUser) REFERENCES Usuarios (codigoUser)
+);
+
+
+
+create table Reservas_Livros (
+	codigoLivro int,
+	codigoReserva int,
+	FOREIGN KEY (codigoLivro) REFERENCES Livros (codigoLivro),
+	FOREIGN KEY (codigoReserva) REFERENCES Reservas (codigoReserva)
 );
