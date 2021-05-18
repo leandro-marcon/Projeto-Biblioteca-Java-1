@@ -27,8 +27,9 @@
 				<c:forEach var="c" items="${listaReservas}">
 					<tr>
 						<td>${c.codigoReserva}</td>
-						<td>${c.dtInicio}</td>
-						<td>${c.dtFinal}</td>
+						<td><fmt:formatDate pattern="dd/MM/yyyy"
+								value="${c.dtInicio}" /></td>
+						<td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.dtFinal}" /></td>
 						<td>${c.usuario.nome}</td>
 
 
@@ -55,11 +56,11 @@
 
 			<p>
 				Usuário:
-				
-				<form:label path="reserva.usuario"></form:label>
+
+				<form:label path="reserva.Usuario"></form:label>
 				<form:select path="reserva.usuario.codigoUser">
 					<form:option value="-1" label="--Selecione Usuário" />
-					<form:options items="${listaUsuarios}" itemValue="codigoUser"
+					<form:options items="${listUsuarios}" itemValue="codigoUser"
 						itemLabel="nome" />
 				</form:select>
 
@@ -68,13 +69,15 @@
 
 			<p>
 				Data Inicio:
-				<form:input path="reserva.dtInicio" />
+				<form:input type="date" path="reserva.dtInicio"
+					style="margin-right:80px;" />
 
 			</p>
 
 			<p>
 				Data Final:
-				<form:input path="reserva.dtFinal" />
+				<form:input type="date" path="reserva.dtFinal"
+					style="margin-right:80px;" />
 
 
 			</p>
