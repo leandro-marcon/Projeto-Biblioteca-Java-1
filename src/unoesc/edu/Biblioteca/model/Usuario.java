@@ -36,12 +36,6 @@ public class Usuario {
 //		this.nome = nome;
 //		//this.dtNascimento = dtNascimento;
 //	}
-
-	@Column
-	private String email;
-
-	@Column
-	private Date dtNascimento;
 	
 	public int getCodigoUser() {
 		return codigoUser;
@@ -66,11 +60,6 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-<<<<<<< HEAD
-=======
-	
-	
->>>>>>> 5c673c229f677506cd09a6d0058dbb19132ae1a2
 
 	public Date getDtNascimento() {
 		return dtNascimento;
@@ -78,26 +67,7 @@ public class Usuario {
 
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
-	}
-<<<<<<< HEAD
-	
-
-
-
-//	public Date getDtNascimento() {
-//		return dtNascimento;
-//	}
-//
-//	public void setDtNascimento(Date dtNascimento) {
-//		this.dtNascimento = dtNascimento;
-//	}
-=======
->>>>>>> 5c673c229f677506cd09a6d0058dbb19132ae1a2
-	
-	
-
-	
-
+	}	
 
 }
 
