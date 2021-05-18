@@ -30,6 +30,12 @@ public class Usuario {
 //		//this.dtNascimento = dtNascimento;
 //	}
 
+	@Column
+	private String email;
+
+	@Column
+	private Date dtNascimento;
+	
 	public int getCodigoUser() {
 		return codigoUser;
 	}
@@ -45,6 +51,25 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getDtNascimento() {
+		return dtNascimento;
+	}
+
+	public void setDtNascimento(Date dtNascimento) {
+		this.dtNascimento = dtNascimento;
+	}
+	
+
+
 
 //	public Date getDtNascimento() {
 //		return dtNascimento;

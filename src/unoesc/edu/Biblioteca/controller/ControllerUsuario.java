@@ -38,7 +38,7 @@ public class ControllerUsuario {
 
 	@RequestMapping(path = "/usuario", method = RequestMethod.GET)
 	public String acessoUsuario(Model model, HttpSession session) {
-		System.out.println("Chamou usuário");
+		System.out.println("Chamou usuï¿½rio");
 
 		List<Usuario> listaUsuarios = this.usuarioDao.getallUsuarios();
 
@@ -56,8 +56,6 @@ public class ControllerUsuario {
 			this.usuarioDao.insertUsuario(user);
 			System.out.println("Salvou Cliente");
 		} else {
-			Usuario c = this.usuarioDao.getUsuarioById(user.getCodigoUser());
-			c.setNome(user.getNome());
 			this.usuarioDao.updateUsuario(user);
 
 		}

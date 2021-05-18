@@ -19,6 +19,8 @@
 				<tr>
 					<th>Código</th>
 					<th>Nome</th>
+					<th>Email</th>
+					<th>Data Nascimento</th>
 					<th>Editar</th>
 					<th>Deletar</th>
 				</tr>
@@ -26,7 +28,9 @@
 					<tr>
 						<td>${c.codigoUser}</td>
 						<td>${c.nome}</td>
-<%-- 						<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dataNasc}"/></td> --%>
+						<td>${c.email}</td>
+					
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dtNascimento}"/></td>
 						<td><a href="usuarioEdit/${c.codigoUser}">Edit</a></td>
 						<td><a href="usuarioDelete/${c.codigoUser}">Delete</a></td>
 					</tr>
@@ -52,16 +56,18 @@
 						<form:input path="usuario.nome" />
 
 					</p>
+					
+					<p>
 
-<!-- 					<p> -->
-<!-- 						Sobrenome: -->
+					Email:
+						<form:input path="usuario.email" />
 
-
-<!-- 					</p> -->
+					</p> 
 					
 					<p>
 					 
-
+					Data Nascimento:
+					<form:input type="date" path="usuario.dtNascimento" />
 
 					</p>
 
