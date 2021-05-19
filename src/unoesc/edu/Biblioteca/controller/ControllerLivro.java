@@ -27,12 +27,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.sun.jdi.Method;
+
 
 import unoesc.edu.Biblioteca.DAO.LivroDAO;
 import unoesc.edu.Biblioteca.model.Livro;
-import unoesc.edu.aulaJSP.DAO.ClienteDAO;
-import unoesc.edu.aulaJSP.model.Cliente;
+
 
 
 @ManagedBean(name="livro")
@@ -45,27 +44,16 @@ public class ControllerLivro {
 	@ManagedProperty(value="#{LivroDAO}")
 	private LivroDAO livroDao;
 
-	@RequestMapping(path = "/livro", method = RequestMethod.GET)
-	public String acessoLivro(Model model, HttpSession session) {
-		System.out.println("Chamou livro");
-
-		List<Livro> listaLivros = this.LivroDao.getallLivros();
-
-		model.addAttribute("listaLivros", listaLivros);
-		model.addAttribute("livro", new Livro());
-
-		return "livroCrud";
-	}
 
 	@RequestMapping(path = "livroSave", method = RequestMethod.POST)
 	public String LivroSave(@ModelAttribute("Livro") Livro user, HttpSession session, Model model) {
 		List listaLivros = (LinkedList<Livro>) session.getAttribute("listaLivro");
 
 		if (user.getCodigoLivro() == 0) {
-			this.LivroDao.insertLivro(user);
+			this.livroDao.insertLivro(user);
 			System.out.println("Salvou Cliente");
 		} else {
-			this.LivroDao.updateLivro(user);
+			this.livroDao.updateLivro(user);
 
 		}
 		
