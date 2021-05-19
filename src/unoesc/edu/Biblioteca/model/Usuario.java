@@ -36,7 +36,7 @@ public class Usuario {
 //		this.nome = nome;
 //		//this.dtNascimento = dtNascimento;
 //	}
-
+	
 	public int getCodigoUser() {
 		return codigoUser;
 	}
@@ -60,8 +60,6 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
 	public Date getDtNascimento() {
 		return dtNascimento;
@@ -69,12 +67,7 @@ public class Usuario {
 
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
-	}
-	
-	
-
-	
-
+	}	
 
 }
 

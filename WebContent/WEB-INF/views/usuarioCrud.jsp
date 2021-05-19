@@ -19,7 +19,11 @@
 				<tr>
 					<th>Código</th>
 					<th>Nome</th>
+<<<<<<< HEAD
+					<th>Email</th>
+=======
 					<th>E-mail</th>
+>>>>>>> 5c673c229f677506cd09a6d0058dbb19132ae1a2
 					<th>Data Nascimento</th>
 					<th>Editar</th>
 					<th>Deletar</th>
@@ -29,8 +33,13 @@
 						<td>${c.codigoUser}</td>
 						<td>${c.nome}</td>
 						<td>${c.email}</td>
+<<<<<<< HEAD
+					
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dtNascimento}"/></td>
+=======
 						<td><fmt:formatDate pattern = "dd/MM/yyyy" value = "${c.dtNascimento}"/></td>
 
+>>>>>>> 5c673c229f677506cd09a6d0058dbb19132ae1a2
 						<td><a href="usuarioEdit/${c.codigoUser}">Edit</a></td>
 						<td><a href="usuarioDelete/${c.codigoUser}">Delete</a></td>
 					</tr>
@@ -56,7 +65,20 @@
 						<form:input path="usuario.nome" />
 
 					</p>
+					
+					<p>
 
+<<<<<<< HEAD
+					Email:
+						<form:input path="usuario.email" />
+
+					</p> 
+					
+					<p>
+					 
+					Data Nascimento:
+					<form:input type="date" path="usuario.dtNascimento" />
+=======
 					<p>
 						E-mail:
 						<form:input path="usuario.email" />
@@ -68,6 +90,7 @@
 					 	Data de Nascimento:
 					 	<form:input type="date" path="usuario.dtNascimento"/>
 
+>>>>>>> 5c673c229f677506cd09a6d0058dbb19132ae1a2
 
 					</p>
 

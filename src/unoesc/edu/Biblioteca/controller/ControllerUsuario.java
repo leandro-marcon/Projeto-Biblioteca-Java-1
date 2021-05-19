@@ -38,7 +38,7 @@ public class ControllerUsuario {
 
 	@RequestMapping(path = "/usuario", method = RequestMethod.GET)
 	public String acessoUsuario(Model model, HttpSession session) {
-		System.out.println("Chamou usuário");
+		System.out.println("Chamou usuï¿½rio");
 
 		List<Usuario> listaUsuarios = this.usuarioDao.getallUsuarios();
 
