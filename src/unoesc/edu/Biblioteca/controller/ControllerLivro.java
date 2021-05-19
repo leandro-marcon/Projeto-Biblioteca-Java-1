@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,13 +31,19 @@ import com.sun.jdi.Method;
 
 import unoesc.edu.Biblioteca.DAO.LivroDAO;
 import unoesc.edu.Biblioteca.model.Livro;
+import unoesc.edu.aulaJSP.DAO.ClienteDAO;
+import unoesc.edu.aulaJSP.model.Cliente;
 
 
-@Controller
+@ManagedBean(name="livro")
+@RequestScoped
 public class ControllerLivro {
 
-	@Autowired
-	private LivroDAO LivroDao;
+	private List<Livro> listLivros;
+	private Livro cli = new Livro();
+	
+	@ManagedProperty(value="#{LivroDAO}")
+	private LivroDAO livroDao;
 
 	@RequestMapping(path = "/livro", method = RequestMethod.GET)
 	public String acessoLivro(Model model, HttpSession session) {

@@ -5,14 +5,17 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import unoesc.edu.Biblioteca.model.Reserva;
 
+
+@Service(value="ReservaDAO")
 public class ReservaDAOImpl implements ReservaDAO {
 	
 	@Autowired
-	private SessionFactory sessionFactory;
+	SessionFactory sessionFactory;
 
 
 	@Override

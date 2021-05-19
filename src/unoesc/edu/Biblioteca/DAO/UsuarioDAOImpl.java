@@ -6,17 +6,18 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import unoesc.edu.Biblioteca.model.Usuario;
 
 
 
-@Repository
+@Service(value="UsuarioDAO")
 public class UsuarioDAOImpl implements UsuarioDAO {
 	
 	@Autowired
-	private SessionFactory sessionFactory;
+	SessionFactory sessionFactory;
 
 
 	@Override
