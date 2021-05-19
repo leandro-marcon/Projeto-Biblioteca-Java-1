@@ -61,29 +61,29 @@ public class ControllerLivro {
 
 	}
 	
-	@RequestMapping(path = "livroEdit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable int id, Model model, HttpSession session) {
-		List listaLivros = (LinkedList<Livro>) session.getAttribute("listaLivro");
-	
-		Livro c = this.LivroDao.getLivroById(id); //Buscar o cara a ser editado
-		model.addAttribute("listaLivro", listaLivros);
-		model.addAttribute("livro", c);
-		
-		
-		return "livroCrud";
-		
-	}
-	
-	
-	@RequestMapping(path = "livroDelete/{id}", method = RequestMethod.GET)
-	public String delete( @PathVariable int id, Model model, HttpSession session) {
-		
-		this.LivroDao.deleteLivro(id);
-	
-		System.out.println("Removeu");
-		
-		return "redirect:/livro";
-		
-	}
+//	@RequestMapping(path = "livroEdit/{id}", method = RequestMethod.GET)
+//	public String edit(@PathVariable int id, Model model, HttpSession session) {
+//		List listaLivros = (LinkedList<Livro>) session.getAttribute("listaLivro");
+//	
+//		Livro c = this.LivroDao.getLivroById(id); //Buscar o cara a ser editado
+//		model.addAttribute("listaLivro", listaLivros);
+//		model.addAttribute("livro", c);
+//		
+//		
+//		return "livroCrud";
+//		
+//	}
+//	
+//	
+//	@RequestMapping(path = "livroDelete/{id}", method = RequestMethod.GET)
+//	public String delete( @PathVariable int id, Model model, HttpSession session) {
+//		
+//		this.LivroDao.deleteLivro(id);
+//	
+//		System.out.println("Removeu");
+//		
+//		return "redirect:/livro";
+//		
+//	}
 
 }
