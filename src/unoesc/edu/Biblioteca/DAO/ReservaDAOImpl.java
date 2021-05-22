@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import unoesc.edu.Biblioteca.model.Reserva;
+import unoesc.edu.Biblioteca.model.Usuario;
 
 
 @Service(value="ReservaDAO")
@@ -24,6 +25,14 @@ public class ReservaDAOImpl implements ReservaDAO {
 		Session session = sessionFactory.getCurrentSession();
 		List<Reserva> listaReservas = session.createQuery("FROM Reserva").list();
 		return listaReservas;
+	}
+	
+	@Override
+	@Transactional
+	public List<Usuario> getallUsuarios() {
+		Session session = sessionFactory.getCurrentSession();
+		List<Usuario> listaUsuarios = session.createQuery("FROM Usuario").list();
+		return listaUsuarios;
 	}
 
 	@Override

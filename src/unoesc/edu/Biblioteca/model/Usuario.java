@@ -2,7 +2,8 @@ package unoesc.edu.Biblioteca.model;
 
 
 
-import java.sql.Date;
+import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @SuppressWarnings("serial")
@@ -28,7 +31,8 @@ public class Usuario {
 	@Column
 	private String email;
 	
-	@Column
+	@Column(name="dtNascimento")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dtNascimento;
 	
 //	public Usuario(int codigoUser, String nome, Date dtNascimento) {
