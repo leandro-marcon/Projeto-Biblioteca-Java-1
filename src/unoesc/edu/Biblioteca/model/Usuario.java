@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Usuarios")
@@ -72,6 +74,17 @@ public class Usuario {
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}	
+	
+	@Override
+	public int hashCode() {
+		return this.codigoUser;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return ((Usuario) obj).getCodigoUser() == this.codigoUser;
+				
+	}
 
 }
 

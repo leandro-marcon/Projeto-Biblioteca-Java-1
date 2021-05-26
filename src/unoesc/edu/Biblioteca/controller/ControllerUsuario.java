@@ -56,6 +56,7 @@ public class ControllerUsuario {
 
 		}
 		
+		this.user = new Usuario();
 
 	}
 	

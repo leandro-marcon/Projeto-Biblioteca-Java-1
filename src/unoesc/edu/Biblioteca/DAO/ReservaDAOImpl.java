@@ -27,13 +27,7 @@ public class ReservaDAOImpl implements ReservaDAO {
 		return listaReservas;
 	}
 	
-	@Override
-	@Transactional
-	public List<Usuario> getallUsuarios() {
-		Session session = sessionFactory.getCurrentSession();
-		List<Usuario> listaUsuarios = session.createQuery("FROM Usuario").list();
-		return listaUsuarios;
-	}
+
 
 	@Override
 	@Transactional

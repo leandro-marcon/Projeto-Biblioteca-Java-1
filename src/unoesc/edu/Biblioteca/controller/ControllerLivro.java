@@ -57,6 +57,8 @@ public class ControllerLivro {
 
 		}
 		
+		this.user = new Livro();
+		
 
 	}
 	

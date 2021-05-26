@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import unoesc.edu.Biblioteca.DAO.ReservaDAO;
+import unoesc.edu.Biblioteca.DAO.UsuarioDAO;
 import unoesc.edu.Biblioteca.model.Reserva;
 import unoesc.edu.Biblioteca.model.Usuario;
 
@@ -16,22 +17,29 @@ import unoesc.edu.Biblioteca.model.Usuario;
 public class ControllerReserva {
 
 	private List<Reserva> listaReservas;
+	private List<Usuario> listaUsuarios;
+	
 	private Reserva user = new Reserva();
 	
 	@ManagedProperty(value="#{ReservaDAO}")
 	private ReservaDAO reservaDao;
+	
+	@ManagedProperty(value="#{UsuarioDAO}")
+	private UsuarioDAO usuarioDao;
+
 
 	
 	public void save() {
-
+		
 		if (user.getCodigoReserva() == 0) {
 			this.reservaDao.insertReserva(user);
-			System.out.println("Salvou Cliente");
+			System.out.println("Salvou Reserva");
 		} else {
 			this.reservaDao.updateReserva(user);
 
 		}
 		
+		this.user = new Reserva();
 
 	}
 	
@@ -63,8 +71,24 @@ public class ControllerReserva {
 		this.listaReservas = listaReservas;
 	}
 	
+	
+	
+	
+
 	public List<Usuario> getListaUsuarios() {
-		return this.reservaDao.getallUsuarios();
+		return this.usuarioDao.getallUsuarios();
+	}
+
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+	public UsuarioDAO getUsuarioDao() {
+		return usuarioDao;
+	}
+
+	public void setUsuarioDao(UsuarioDAO usuarioDao) {
+		this.usuarioDao = usuarioDao;
 	}
 
 	public Reserva getUser() {
