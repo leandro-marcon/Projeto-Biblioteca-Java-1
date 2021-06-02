@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,31 +29,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sun.jdi.Method;
 
+import unoesc.edu.Biblioteca.DAO.LivroDAO;
 import unoesc.edu.Biblioteca.DAO.UsuarioDAO;
+import unoesc.edu.Biblioteca.model.Livro;
 import unoesc.edu.Biblioteca.model.Usuario;
 
 
-@Controller
+@ManagedBean(name="usuario")
+@RequestScoped
 public class ControllerUsuario {
 
-	@Autowired
+	private List<Usuario> listaUsuarios;
+	private Usuario user = new Usuario();
+	
+	@ManagedProperty(value="#{UsuarioDAO}")
 	private UsuarioDAO usuarioDao;
 
-	@RequestMapping(path = "/usuario", method = RequestMethod.GET)
-	public String acessoUsuario(Model model, HttpSession session) {
-		System.out.println("Chamou usu�rio");
-
-		List<Usuario> listaUsuarios = this.usuarioDao.getallUsuarios();
-
-		model.addAttribute("listaUsuarios", listaUsuarios);
-		model.addAttribute("usuario", new Usuario());
-
-		return "usuarioCrud";
-	}
-
-	@RequestMapping(path = "usuarioSave", method = RequestMethod.POST)
-	public String usuarioSave(@ModelAttribute("usuario") Usuario user, HttpSession session, Model model) {
-		List listaUsuario = (LinkedList<Usuario>) session.getAttribute("listaUsuario");
+	
+	public void save() {
 
 		if (user.getCodigoUser() == 0) {
 			this.usuarioDao.insertUsuario(user);
@@ -60,33 +56,51 @@ public class ControllerUsuario {
 
 		}
 		
-		return "redirect:/usuario";
+		this.user = new Usuario();
 
 	}
 	
-	@RequestMapping(path = "usuarioEdit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable int id, Model model, HttpSession session) {
-		List listaUsuario = (LinkedList<Usuario>) session.getAttribute("listaUsuario");
+	public void edit(int id) {
+		List<Usuario> listaUsuarios = this.usuarioDao.getallUsuarios();
 	
-		Usuario c = this.usuarioDao.getUsuarioById(id); //Buscar o cara a ser editado
-		model.addAttribute("listaUsuario", listaUsuario);
-		model.addAttribute("usuario", c);
-		
-		
-		return "usuarioCrud";
-		
+		user = this.usuarioDao.getUsuarioById(id); //Buscar o cara a ser editado
+
 	}
 	
 	
-	@RequestMapping(path = "usuarioDelete/{id}", method = RequestMethod.GET)
-	public String delete( @PathVariable int id, Model model, HttpSession session) {
+	public void delete(int id) {
 		
 		this.usuarioDao.deleteUsuario(id);
 	
 		System.out.println("Removeu");
 		
-		return "redirect:/usuario";
+		
 		
 	}
 
+	public List<Usuario> getListaUsuarios() {
+		return this.usuarioDao.getallUsuarios();
+	}
+
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario user) {
+		this.user = user;
+	}
+
+	public UsuarioDAO getUsuarioDao() {
+		return usuarioDao;
+	}
+
+	public void setUsuarioDao(UsuarioDAO usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+
+	
 }

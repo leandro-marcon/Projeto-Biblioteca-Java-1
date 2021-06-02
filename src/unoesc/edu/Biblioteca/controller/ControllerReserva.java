@@ -1,92 +1,156 @@
 package unoesc.edu.Biblioteca.controller;
 
-import java.io.IOException;
-
-import java.lang.management.MemoryType;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
-import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.sun.jdi.Method;
-
+import unoesc.edu.Biblioteca.DAO.LivroDAO;
 import unoesc.edu.Biblioteca.DAO.ReservaDAO;
+import unoesc.edu.Biblioteca.DAO.UsuarioDAO;
+import unoesc.edu.Biblioteca.model.Livro;
 import unoesc.edu.Biblioteca.model.Reserva;
+import unoesc.edu.Biblioteca.model.Usuario;
 
 
-@Controller
+@ManagedBean(name="reservaMB")
+@RequestScoped
 public class ControllerReserva {
 
-	@Autowired
-	private ReservaDAO ReservaDao;
+	private List<Reserva> listaReservas;
+	private List<Usuario> listaUsuarios;
+	private List<Livro>listaLivros;
+	private List<Livro>selecionaLivros = null;
+	
+	
+	private Reserva user = new Reserva();
+	
+	@ManagedProperty(value="#{ReservaDAO}")
+	private ReservaDAO reservaDao;
+	
+	@ManagedProperty(value="#{UsuarioDAO}")
+	private UsuarioDAO usuarioDao;
+	
+	@ManagedProperty(value="#{LivroDAO}")
+	private LivroDAO livroDao;
 
-	@RequestMapping(path = "/reserva", method = RequestMethod.GET)
-	public String acessoReserva(Model model, HttpSession session) {
-		System.out.println("Chamou Reserva");
 
-		List<Reserva> listaReservas = this.ReservaDao.getallReservas();
 
-		model.addAttribute("listaReservas", listaReservas);
-		model.addAttribute("reserva", new Reserva());
-
-		return "reservaCrud";
-	}
-
-	@RequestMapping(path = "reservaSave", method = RequestMethod.POST)
-	public String ReservaSave(@ModelAttribute("Reserva") Reserva user, HttpSession session, Model model) {
-		List listaReservas = (LinkedList<Reserva>) session.getAttribute("listaReserva");
-
+	
+	public void save() {
+		
 		if (user.getCodigoReserva() == 0) {
-			this.ReservaDao.insertReserva(user);
-			System.out.println("Salvou Cliente");
+			for(Livro l: this.selecionaLivros) {
+				System.out.println("aqui: " + l.getAutor());
+				this.user.getLivros().add(l);
+			}
+			
+			this.reservaDao.insertReserva(user);
+			System.out.println("Salvou Reserva");
 		} else {
-			this.ReservaDao.updateReserva(user);
+			this.reservaDao.updateReserva(user);
 
 		}
 		
-		return "redirect:/reserva";
+		this.user = new Reserva();
 
 	}
 	
-	@RequestMapping(path = "reservaEdit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable int id, Model model, HttpSession session) {
-		List listaReservas = (LinkedList<Reserva>) session.getAttribute("listaReserva");
+	public void edit(int id) {
+		List<Reserva> listaReservas = this.reservaDao.getallReservas();
 	
-		Reserva c = this.ReservaDao.getReservaById(id); //Buscar o cara a ser editado
-		model.addAttribute("listaReserva", listaReservas);
-		model.addAttribute("Reserva", c);
-		
-		
-		return "reservaCrud";
-		
+		user = this.reservaDao.getReservaById(id); //Buscar o cara a ser editado
+
 	}
 	
 	
-	@RequestMapping(path = "reservaDelete/{id}", method = RequestMethod.GET)
-	public String delete( @PathVariable int id, Model model, HttpSession session) {
+	public void delete(int id) {
 		
-		this.ReservaDao.deleteReserva(id);
+		this.reservaDao.deleteReserva(id);
 	
 		System.out.println("Removeu");
 		
-		return "redirect:/reserva";
+		
 		
 	}
+	
+	
 
+	public List<Reserva> getListaReservas() {
+		return this.reservaDao.getallReservas();
+	}
+
+	public void setListaReservas(List<Reserva> listaReservas) {
+		this.listaReservas = listaReservas;
+	}
+	
+	
+	
+	
+
+	public List<Usuario> getListaUsuarios() {
+		return this.usuarioDao.getallUsuarios();
+	}
+
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+	public UsuarioDAO getUsuarioDao() {
+		return usuarioDao;
+	}
+
+	public void setUsuarioDao(UsuarioDAO usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+	
+	
+
+	public List<Livro> getListaLivros() {
+		return this.livroDao.getallLivros();
+	}
+
+	public void setListaLivros(List<Livro> listaLivros) {
+		this.listaLivros = listaLivros;
+	}
+
+	public LivroDAO getLivroDao() {
+		return livroDao;
+	}
+
+	public void setLivroDao(LivroDAO livroDao) {
+		this.livroDao = livroDao;
+	}
+
+	public Reserva getUser() {
+		return user;
+	}
+
+	public void setUser(Reserva user) {
+		this.user = user;
+	}
+
+	public ReservaDAO getReservaDao() {
+		return reservaDao;
+	}
+
+	public void setReservaDao(ReservaDAO ReservaDao) {
+		this.reservaDao = ReservaDao;
+	}
+
+	public List<Livro> getSelecionaLivros() {
+		if(this.selecionaLivros == null) 
+			this.selecionaLivros = new ArrayList<Livro>();
+		return selecionaLivros;
+	}
+
+	public void setSelecionaLivros(List<Livro> selecionaLivros) {
+		this.selecionaLivros = selecionaLivros;
+	}
+
+	
+	
+	
 }

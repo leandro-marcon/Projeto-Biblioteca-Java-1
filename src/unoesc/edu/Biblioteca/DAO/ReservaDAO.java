@@ -3,6 +3,7 @@ package unoesc.edu.Biblioteca.DAO;
 import java.util.List;
 
 import unoesc.edu.Biblioteca.model.Reserva;
+import unoesc.edu.Biblioteca.model.Usuario;
 
 public interface ReservaDAO {
 	

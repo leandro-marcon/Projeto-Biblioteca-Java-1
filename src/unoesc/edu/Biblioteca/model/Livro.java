@@ -34,12 +34,8 @@ public class Livro {
 	@Column
 	private int anoPublic;
 	
-	//@ManyToMany(fetch = FetchType.EAGER)
-	//@JoinTable(name = "Reservas_Livros", 
-    //joinColumns = { @JoinColumn(name = "codigoReserva") }, 
-    //inverseJoinColumns = { @JoinColumn(name = "codigoReserva") })
- 	//private Set<Reserva> reserva = new HashSet<Reserva>();
-	
+	@ManyToMany(mappedBy = "livros")
+	private Set<Reserva> reserva;
 	
 	
 	public int getCodigoLivro() {
@@ -73,7 +69,35 @@ public class Livro {
 	public void setAnoPublic(int anoPublic) {
 		this.anoPublic = anoPublic;
 	}
-	
-	
+
+	public Set<Reserva> getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Set<Reserva> reserva) {
+		this.reserva = reserva;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + codigoLivro;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Livro other = (Livro) obj;
+		if (codigoLivro != other.codigoLivro)
+			return false;
+		return true;
+	}	
 
 }

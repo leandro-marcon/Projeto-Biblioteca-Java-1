@@ -34,21 +34,21 @@ import unoesc.edu.Biblioteca.model.Livro;
 
 
 
+
 @ManagedBean(name="livro")
 @RequestScoped
 public class ControllerLivro {
 
-	private List<Livro> listLivros;
-	private Livro cli = new Livro();
+	private List<Livro> listaLivros;
+	private Livro user = new Livro();
 	
 	@ManagedProperty(value="#{LivroDAO}")
 	private LivroDAO livroDao;
 
 
-	@RequestMapping(path = "livroSave", method = RequestMethod.POST)
-	public String LivroSave(@ModelAttribute("Livro") Livro user, HttpSession session, Model model) {
-		List listaLivros = (LinkedList<Livro>) session.getAttribute("listaLivro");
-
+	
+	public void save() {
+		
 		if (user.getCodigoLivro() == 0) {
 			this.livroDao.insertLivro(user);
 			System.out.println("Salvou Cliente");
@@ -57,33 +57,57 @@ public class ControllerLivro {
 
 		}
 		
-		return "redirect:/livro";
+		this.user = new Livro();
+		
 
 	}
 	
-//	@RequestMapping(path = "livroEdit/{id}", method = RequestMethod.GET)
-//	public String edit(@PathVariable int id, Model model, HttpSession session) {
-//		List listaLivros = (LinkedList<Livro>) session.getAttribute("listaLivro");
-//	
-//		Livro c = this.LivroDao.getLivroById(id); //Buscar o cara a ser editado
-//		model.addAttribute("listaLivro", listaLivros);
-//		model.addAttribute("livro", c);
-//		
-//		
-//		return "livroCrud";
-//		
-//	}
-//	
-//	
-//	@RequestMapping(path = "livroDelete/{id}", method = RequestMethod.GET)
-//	public String delete( @PathVariable int id, Model model, HttpSession session) {
-//		
-//		this.LivroDao.deleteLivro(id);
-//	
-//		System.out.println("Removeu");
-//		
-//		return "redirect:/livro";
-//		
-//	}
+	public void edit (int id){
+		List<Livro> listaLivros = this.livroDao.getallLivros();
+	
+		user = this.livroDao.getLivroById(id); //Buscar o cara a ser editado
+	
+		
+	}
+	
+	
+	public void delete(int id) {
+		
+		this.livroDao.deleteLivro(id);
+	
+		System.out.println("Removeu");
+		
+		
+		
+	}
+
+
+
+	public List<Livro> getListaLivros() {
+		return this.livroDao.getallLivros();
+	}
+
+	public void setListaLivros(List<Livro> listaLivros) {
+		this.listaLivros = listaLivros;
+	}
+
+	public Livro getUser() {
+		return user;
+	}
+
+	public void setUser(Livro user) {
+		this.user = user;
+	}
+
+	public LivroDAO getLivroDao() {
+		return livroDao;
+	}
+
+	public void setLivroDao(LivroDAO livroDao) {
+		this.livroDao = livroDao;
+	}
+	
+	
+	
 
 }
