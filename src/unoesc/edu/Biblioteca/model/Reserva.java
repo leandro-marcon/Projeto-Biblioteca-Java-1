@@ -1,6 +1,8 @@
 package unoesc.edu.Biblioteca.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -30,9 +33,17 @@ public class Reserva {
 	@Column
 	private Date dtFinal;
 //	
-//	//@ManyToMany(mappedBy = "Livros")
+	
+	
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "Reservas_Livros", 
+    joinColumns = { @JoinColumn(name = "codigoreserva") }, 
+    inverseJoinColumns = { @JoinColumn(name = "codigolivro") })
+	private Set<Livro> livros = new HashSet<Livro>();
+	
 //	
-
+	
 	@ManyToOne
 	@JoinColumn(name = "codigoUser")// integer,
 	private Usuario usuario;
@@ -49,7 +60,17 @@ public class Reserva {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	
 
+
+	public Set<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(Set<Livro> livros) {
+		this.livros = livros;
+	}
 
 	public int getCodigoReserva() {
 		return codigoReserva;

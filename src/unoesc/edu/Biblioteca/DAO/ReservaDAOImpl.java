@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import unoesc.edu.Biblioteca.model.Livro;
 import unoesc.edu.Biblioteca.model.Reserva;
 import unoesc.edu.Biblioteca.model.Usuario;
+
 
 
 @Service(value="ReservaDAO")
@@ -67,4 +69,6 @@ public class ReservaDAOImpl implements ReservaDAO {
 		return false;
 
 }
+	
+	
 }
